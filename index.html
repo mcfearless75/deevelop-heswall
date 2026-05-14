@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
   <!-- Primary SEO -->
@@ -88,10 +88,10 @@
   <style>
     /* ── RESET ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; -webkit-overflow-scrolling: touch; }
     body { font-family: 'DM Sans', sans-serif; background: #0f0f0f; color: #f0efea; line-height: 1.6; overflow-x: hidden; }
     img  { max-width: 100%; display: block; }
-    a    { color: inherit; text-decoration: none; }
+    a    { color: inherit; text-decoration: none; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
 
     /* ── TOKENS ── */
     :root {
@@ -122,6 +122,9 @@
       border: none;
       cursor: pointer;
       transition: background 0.22s, color 0.22s, transform 0.22s;
+      min-height: 44px;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
     }
     .btn-green { background: var(--green); color: #0f0f0f; }
     .btn-green:hover { background: var(--green-lt); transform: translateY(-2px); }
@@ -150,7 +153,7 @@
     /* ── HEADINGS ── */
     .h-hero {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: clamp(4.5rem, 13vw, 11rem);
+      font-size: clamp(3.8rem, 13vw, 11rem);
       font-weight: 900;
       line-height: 0.88;
       letter-spacing: -0.01em;
@@ -187,7 +190,7 @@
     .nav-inner {
       max-width: var(--max-w);
       margin: 0 auto;
-      padding: 0 24px;
+      padding: 0 max(24px, env(safe-area-inset-right)) 0 max(24px, env(safe-area-inset-left));
       height: 100%;
       display: flex;
       align-items: center;
@@ -206,7 +209,7 @@
     }
     .nav-links a:hover, .nav-links a.active { color: var(--green); }
     .nav-links .nav-cta { padding: 10px 22px; font-size: 0.72rem; margin-left: 8px; }
-    .burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; background: none; border: none; }
+    .burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 10px; background: none; border: none; min-width: 44px; min-height: 44px; align-items: center; justify-content: center; touch-action: manipulation; }
     .burger span { display: block; width: 24px; height: 2px; background: var(--text); transition: all 0.3s; }
     .mob-menu {
       display: none;
@@ -216,7 +219,8 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 24px;
+      gap: 8px;
+      padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
     }
     .mob-menu.open { display: flex; }
     .mob-menu a {
@@ -227,9 +231,14 @@
       text-transform: uppercase;
       color: var(--text);
       transition: color 0.2s;
+      display: flex;
+      align-items: center;
+      min-height: 48px;
+      padding: 0 24px;
+      touch-action: manipulation;
     }
     .mob-menu a:hover { color: var(--green); }
-    .mob-close { position: absolute; top: 20px; right: 24px; background: none; border: none; color: var(--text); font-size: 2rem; cursor: pointer; line-height: 1; }
+    .mob-close { position: absolute; top: max(20px, env(safe-area-inset-top)); right: max(24px, env(safe-area-inset-right)); background: none; border: none; color: var(--text); font-size: 2rem; cursor: pointer; line-height: 1; min-width: 44px; min-height: 44px; display: flex; align-items: center; justify-content: center; touch-action: manipulation; }
     @media (max-width: 860px) { .nav-links { display: none; } .burger { display: flex; } }
 
     /* ══════════════════════════════════════
@@ -261,7 +270,7 @@
     .hero-body {
       position: relative;
       z-index: 2;
-      padding: 0 24px 72px;
+      padding: 0 max(24px, env(safe-area-inset-right)) 72px max(24px, env(safe-area-inset-left));
       max-width: var(--max-w);
       margin: 0 auto;
       width: 100%;
@@ -369,6 +378,12 @@
       .about-img-lower { height: 170px; }
       .about-img-badge { right: 10px; }
     }
+    @media (max-width: 768px) {
+      .about-img { height: auto; position: static; }
+      .about-img-main { position: static; width: 100%; height: 260px; }
+      .about-img-lower { display: none; }
+      .about-img-badge { position: static; transform: none; margin-top: 12px; display: inline-block; }
+    }
 
     /* ══════════════════════════════════════
        SERVICES
@@ -425,7 +440,7 @@
     }
     .svc-card p { color: var(--muted); font-size: 0.9rem; line-height: 1.75; }
     @media (max-width: 860px) { .services-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 520px) { .services-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 480px) { .services-grid { grid-template-columns: 1fr; } }
 
     /* ══════════════════════════════════════
        PROJECTS / GALLERY
@@ -587,9 +602,10 @@
       color: var(--text);
       padding: 13px 15px;
       font-family: 'DM Sans', sans-serif;
-      font-size: 0.93rem;
+      font-size: 16px; /* 16px prevents iOS zoom on focus */
       outline: none;
       transition: border-color 0.22s;
+      -webkit-appearance: none;
       appearance: none;
     }
     .f-group input:focus,
@@ -605,7 +621,8 @@
     @media (max-width: 860px) {
       .contact-grid { grid-template-columns: 1fr; gap: 48px; }
       .f-row { grid-template-columns: 1fr; }
-      .form-panel { padding: 28px 20px; }
+      .form-panel { padding: 28px 20px; order: 2; }
+      .contact-grid > div:first-child { order: 1; }
     }
 
     /* ══════════════════════════════════════
@@ -664,16 +681,53 @@
     .why-item:nth-child(3) { transition-delay: 0.2s; }
     .why-item:nth-child(4) { transition-delay: 0.3s; }
 
-    /* iPhone X safe area */
+    /* iPhone X / notch safe areas */
     @supports (padding-bottom: env(safe-area-inset-bottom)) {
-      .mob-menu { padding-bottom: env(safe-area-inset-bottom); }
       footer    { padding-bottom: calc(28px + env(safe-area-inset-bottom)); }
+      #nav      { padding-top: env(safe-area-inset-top); }
     }
+
+    /* ── why-items: slide from left instead of up ── */
+    .why-item { transform: translateX(-20px); }
+    .why-item.visible { transform: translateX(0); }
+
+    /* ── green-rule slide-in ── */
+    .green-rule {
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.6s ease, opacity 0.6s ease;
+    }
+    .green-rule.visible { transform: scaleX(1); }
+
+    /* ── gallery cells: fade + scale entrance ── */
+    .gallery-cell {
+      opacity: 0;
+      transform: scale(0.96);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .gallery-cell.visible { opacity: 1; transform: scale(1); }
+    .gallery-cell:nth-child(2) { transition-delay: 0.08s; }
+    .gallery-cell:nth-child(3) { transition-delay: 0.16s; }
+    .gallery-cell:nth-child(4) { transition-delay: 0.24s; }
+    .gallery-cell:nth-child(5) { transition-delay: 0.32s; }
+
+    /* ── CTA button gentle pulse ── */
+    @keyframes ctaPulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.03)} }
+    .cta-band .btn-dark { animation: ctaPulse 3s ease-in-out infinite 2s; }
+
+    /* ── Nav logo fade in on load ── */
+    @keyframes logoIn { from{opacity:0} to{opacity:1} }
+    .nav-logo { animation: logoIn 0.5s ease both; }
 
     @media (prefers-reduced-motion: reduce) {
       .reveal, .reveal.visible { transition: none; opacity: 1; transform: none; }
       .hero-kicker, .hero-body .h-hero, .hero-sub, .hero-btns { animation: none; }
       .hero-scroll, .gallery-cell img, .svc-card, .btn { transition: none; animation: none; }
+      .green-rule, .green-rule.visible { transform: scaleX(1); transition: none; }
+      .gallery-cell, .gallery-cell.visible { opacity: 1; transform: scale(1); transition: none; }
+      .why-item, .why-item.visible { transform: translateX(0); }
+      .cta-band .btn-dark { animation: none; }
+      .nav-logo { animation: none; }
     }
   </style>
 </head>
@@ -1093,13 +1147,13 @@
 </footer>
 
 <script>
-  // Nav solid on scroll
+  // ── Nav solid on scroll ──
   const nav = document.getElementById('nav');
   const solidNav = () => nav.classList.toggle('solid', window.scrollY > 60);
   window.addEventListener('scroll', solidNav, { passive: true });
   solidNav();
 
-  // Mobile menu
+  // ── Mobile menu ──
   const burger   = document.getElementById('burger');
   const mobMenu  = document.getElementById('mob-menu');
   const mobClose = document.getElementById('mob-close');
@@ -1109,7 +1163,7 @@
     l.addEventListener('click', () => mobMenu.classList.remove('open'))
   );
 
-  // Active nav highlight
+  // ── Active nav highlight ──
   const sections = document.querySelectorAll('section[id]');
   const navAs    = document.querySelectorAll('.nav-links a');
   window.addEventListener('scroll', () => {
@@ -1118,8 +1172,9 @@
     navAs.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + cur));
   }, { passive: true });
 
-  // Scroll reveal via IntersectionObserver
-  const revealEls = document.querySelectorAll('.reveal');
+  // ── Scroll reveal via IntersectionObserver ──
+  // Also handles gallery cells and green-rules
+  const revealEls = document.querySelectorAll('.reveal, .gallery-cell, .green-rule');
   if ('IntersectionObserver' in window) {
     const ro = new IntersectionObserver(entries => {
       entries.forEach(e => {
@@ -1131,7 +1186,63 @@
     revealEls.forEach(el => el.classList.add('visible'));
   }
 
-  // Contact form — AJAX to Formspree
+  // ── Animated counters for stats ──
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const statTargets = { '10+': 10, '150+': 150, '100%': 100 };
+  const statEls = document.querySelectorAll('.stat strong');
+
+  function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
+
+  function animateCounter(el, target, suffix, duration) {
+    if (prefersReduced) return;
+    let start = null;
+    function step(ts) {
+      if (!start) start = ts;
+      const progress = Math.min((ts - start) / duration, 1);
+      const val = Math.round(easeOut(progress) * target);
+      el.textContent = val + suffix;
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  if ('IntersectionObserver' in window) {
+    const statObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        statObs.unobserve(e.target);
+        const txt = e.target.textContent.trim();
+        if (txt === '10+')  animateCounter(e.target, 10,  '+', 1800);
+        if (txt === '150+') animateCounter(e.target, 150, '+', 1800);
+        if (txt === '100%') animateCounter(e.target, 100, '%', 1800);
+      });
+    }, { threshold: 0.3 });
+    statEls.forEach(el => statObs.observe(el));
+  }
+
+  // ── Hero background parallax on scroll ──
+  const heroBg = document.querySelector('.hero-bg');
+  if (heroBg && !prefersReduced) {
+    let rafPending = false;
+    window.addEventListener('scroll', () => {
+      if (rafPending) return;
+      rafPending = true;
+      requestAnimationFrame(() => {
+        heroBg.style.transform = 'translateY(' + (window.scrollY * 0.3) + 'px)';
+        rafPending = false;
+      });
+    }, { passive: true });
+  }
+
+  // ── Service card svc-num opacity on hover ──
+  document.querySelectorAll('.svc-card').forEach(card => {
+    const num = card.querySelector('.svc-num');
+    if (!num) return;
+    card.addEventListener('mouseenter', () => { num.style.color = 'rgba(94,191,140,0.25)'; });
+    card.addEventListener('mouseleave', () => { num.style.color = ''; });
+  });
+
+  // ── Contact form — AJAX to Formspree ──
   const form = document.getElementById('eq-form');
   const ok   = document.getElementById('form-ok');
   if (form) {
