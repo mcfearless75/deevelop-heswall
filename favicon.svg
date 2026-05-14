@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <defs><clipPath id="r"><rect width="32" height="32" rx="7"/></clipPath></defs>
+  <rect width="32" height="32" rx="7" fill="#0f0f0f"/>
+  <g clip-path="url(#r)" transform="translate(4,4)">
+    <polygon points="12,1 0,10 0,24 24,24 24,10" fill="none" stroke="#5EBF8C" stroke-width="2.2" stroke-linejoin="round"/>
+    <rect x="8" y="14" width="8" height="10" fill="none" stroke="#5EBF8C" stroke-width="2" stroke-linejoin="round"/>
+  </g>
+</svg>
