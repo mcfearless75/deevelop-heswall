@@ -2,31 +2,37 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.deevelop-heswall.co.uk/</loc>
-    <lastmod>2025-05-14</lastmod>
+    <lastmod>2026-05-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.deevelop-heswall.co.uk/irby/</loc>
-    <lastmod>2025-05-14</lastmod>
+    <loc>https://www.deevelop-heswall.co.uk/hoylake/</loc>
+    <lastmod>2026-05-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.deevelop-heswall.co.uk/thurstaston/</loc>
-    <lastmod>2025-05-14</lastmod>
+    <loc>https://www.deevelop-heswall.co.uk/west-kirby/</loc>
+    <lastmod>2026-05-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.deevelop-heswall.co.uk/greasby/</loc>
-    <lastmod>2025-05-14</lastmod>
+    <loc>https://www.deevelop-heswall.co.uk/meols/</loc>
+    <lastmod>2026-05-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.deevelop-heswall.co.uk/neston/</loc>
-    <lastmod>2025-05-14</lastmod>
+    <loc>https://www.deevelop-heswall.co.uk/caldy/</loc>
+    <lastmod>2026-05-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.deevelop-heswall.co.uk/wirral/</loc>
+    <lastmod>2026-05-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
