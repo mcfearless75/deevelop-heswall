@@ -660,78 +660,145 @@
     /* ══════════════════════════════════════
        ANIMATIONS & SCROLL REVEAL
     ══════════════════════════════════════ */
-    @keyframes heroFadeIn { from { opacity:0; transform:translateY(22px); } to { opacity:1; transform:translateY(0); } }
-    .hero-kicker          { animation: heroFadeIn 0.7s ease both 0.1s; }
-    .hero-body .h-hero    { animation: heroFadeIn 0.7s ease both 0.26s; }
-    .hero-sub             { animation: heroFadeIn 0.7s ease both 0.44s; }
-    .hero-btns            { animation: heroFadeIn 0.7s ease both 0.6s; }
 
+    /* ── Hero entrance ── */
+    @keyframes heroLineUp {
+      from { opacity:0; transform:translateY(100%); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+    @keyframes heroFadeIn {
+      from { opacity:0; transform:translateY(28px); filter:blur(6px); }
+      to   { opacity:1; transform:translateY(0);    filter:blur(0); }
+    }
+
+    .hero-kicker { animation: heroFadeIn 0.8s cubic-bezier(0.22,1,0.36,1) both 0.05s; }
+    .hero-sub    { animation: heroFadeIn 0.8s cubic-bezier(0.22,1,0.36,1) both 0.5s; }
+    .hero-btns   { animation: heroFadeIn 0.8s cubic-bezier(0.22,1,0.36,1) both 0.7s; }
+
+    /* h1 — each line clips up from below */
+    .hero-line { display: block; overflow: hidden; }
+    .hero-line-inner {
+      display: block;
+      animation: heroLineUp 0.85s cubic-bezier(0.22,1,0.36,1) both;
+    }
+    .hero-line:nth-child(1) .hero-line-inner { animation-delay: 0.18s; }
+    .hero-line:nth-child(2) .hero-line-inner { animation-delay: 0.32s; }
+    .hero-line:nth-child(3) .hero-line-inner { animation-delay: 0.46s; }
+
+    /* ── Scroll reveal — spring easing + blur ── */
     .reveal {
       opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.65s ease, transform 0.65s ease;
+      transform: translateY(44px);
+      filter: blur(5px);
+      transition:
+        opacity  0.75s cubic-bezier(0.22,1,0.36,1),
+        transform 0.75s cubic-bezier(0.22,1,0.36,1),
+        filter   0.6s  cubic-bezier(0.22,1,0.36,1);
     }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal.visible { opacity:1; transform:translateY(0); filter:blur(0); }
 
-    /* stagger service cards */
-    .svc-card:nth-child(2) { transition-delay: 0.08s; }
-    .svc-card:nth-child(3) { transition-delay: 0.16s; }
-    .svc-card:nth-child(4) { transition-delay: 0.08s; }
-    .svc-card:nth-child(5) { transition-delay: 0.16s; }
-    .svc-card:nth-child(6) { transition-delay: 0.24s; }
+    /* ── Labels: slide from left ── */
+    .label {
+      opacity: 0;
+      transform: translateX(-18px);
+      transition: opacity 0.55s cubic-bezier(0.22,1,0.36,1), transform 0.55s cubic-bezier(0.22,1,0.36,1);
+    }
+    .label.visible { opacity:1; transform:translateX(0); }
 
-    /* why items stagger */
+    /* ── Service cards: bounce-in from below with stagger ── */
+    .svc-card {
+      opacity: 0;
+      transform: translateY(36px) scale(0.97);
+      transition:
+        opacity  0.65s cubic-bezier(0.22,1,0.36,1),
+        transform 0.65s cubic-bezier(0.22,1,0.36,1);
+    }
+    .svc-card.visible { opacity:1; transform:translateY(0) scale(1); }
+    .svc-card:nth-child(2) { transition-delay: 0.07s; }
+    .svc-card:nth-child(3) { transition-delay: 0.14s; }
+    .svc-card:nth-child(4) { transition-delay: 0.07s; }
+    .svc-card:nth-child(5) { transition-delay: 0.14s; }
+    .svc-card:nth-child(6) { transition-delay: 0.21s; }
+
+    /* ── Why items: slide from left, stagger ── */
+    .why-item {
+      opacity: 0;
+      transform: translateX(-28px);
+      transition:
+        opacity  0.65s cubic-bezier(0.22,1,0.36,1),
+        transform 0.65s cubic-bezier(0.22,1,0.36,1);
+    }
+    .why-item.visible { opacity:1; transform:translateX(0); }
     .why-item:nth-child(2) { transition-delay: 0.1s; }
     .why-item:nth-child(3) { transition-delay: 0.2s; }
     .why-item:nth-child(4) { transition-delay: 0.3s; }
 
-    /* iPhone X / notch safe areas */
-    @supports (padding-bottom: env(safe-area-inset-bottom)) {
-      footer    { padding-bottom: calc(28px + env(safe-area-inset-bottom)); }
-      #nav      { padding-top: env(safe-area-inset-top); }
-    }
-
-    /* ── why-items: slide from left instead of up ── */
-    .why-item { transform: translateX(-20px); }
-    .why-item.visible { transform: translateX(0); }
-
-    /* ── green-rule slide-in ── */
+    /* ── Green rule ── */
     .green-rule {
       transform: scaleX(0);
       transform-origin: left;
-      transition: transform 0.6s ease, opacity 0.6s ease;
+      transition: transform 0.65s cubic-bezier(0.22,1,0.36,1);
     }
     .green-rule.visible { transform: scaleX(1); }
 
-    /* ── gallery cells: fade + scale entrance ── */
+    /* ── Gallery cells ── */
     .gallery-cell {
       opacity: 0;
-      transform: scale(0.96);
-      transition: opacity 0.55s ease, transform 0.55s ease;
+      transform: scale(0.94) translateY(16px);
+      transition: opacity 0.65s cubic-bezier(0.22,1,0.36,1), transform 0.65s cubic-bezier(0.22,1,0.36,1);
     }
-    .gallery-cell.visible { opacity: 1; transform: scale(1); }
-    .gallery-cell:nth-child(2) { transition-delay: 0.08s; }
-    .gallery-cell:nth-child(3) { transition-delay: 0.16s; }
-    .gallery-cell:nth-child(4) { transition-delay: 0.24s; }
-    .gallery-cell:nth-child(5) { transition-delay: 0.32s; }
+    .gallery-cell.visible { opacity:1; transform:scale(1) translateY(0); }
+    .gallery-cell:nth-child(2) { transition-delay: 0.07s; }
+    .gallery-cell:nth-child(3) { transition-delay: 0.14s; }
+    .gallery-cell:nth-child(4) { transition-delay: 0.21s; }
+    .gallery-cell:nth-child(5) { transition-delay: 0.28s; }
+
+    /* ── Mobile menu: links stagger in on open ── */
+    @keyframes mobLinkIn {
+      from { opacity:0; transform:translateY(22px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+    .mob-menu.open .mob-lnk {
+      animation: mobLinkIn 0.45s cubic-bezier(0.22,1,0.36,1) both;
+    }
+    .mob-menu.open .mob-lnk:nth-child(2) { animation-delay: 0.06s; }
+    .mob-menu.open .mob-lnk:nth-child(3) { animation-delay: 0.12s; }
+    .mob-menu.open .mob-lnk:nth-child(4) { animation-delay: 0.18s; }
+    .mob-menu.open .mob-lnk:nth-child(5) { animation-delay: 0.24s; }
+    .mob-menu.open .mob-lnk:nth-child(6) { animation-delay: 0.30s; }
+
+    /* ── Burger animates to X on open ── */
+    .burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .burger.open span:nth-child(2) { opacity:0; transform:scaleX(0); }
+    .burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .burger span { transition: transform 0.3s ease, opacity 0.3s ease; }
 
     /* ── CTA button gentle pulse ── */
     @keyframes ctaPulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.03)} }
     .cta-band .btn-dark { animation: ctaPulse 3s ease-in-out infinite 2s; }
 
-    /* ── Nav logo fade in on load ── */
-    @keyframes logoIn { from{opacity:0} to{opacity:1} }
-    .nav-logo { animation: logoIn 0.5s ease both; }
+    /* ── Nav logo fade in ── */
+    @keyframes logoIn { from{opacity:0;transform:translateX(-10px)} to{opacity:1;transform:translateX(0)} }
+    .nav-logo { animation: logoIn 0.6s cubic-bezier(0.22,1,0.36,1) both; }
+
+    /* iPhone X safe areas */
+    @supports (padding-bottom: env(safe-area-inset-bottom)) {
+      footer { padding-bottom: calc(28px + env(safe-area-inset-bottom)); }
+      #nav   { padding-top: env(safe-area-inset-top); }
+    }
 
     @media (prefers-reduced-motion: reduce) {
-      .reveal, .reveal.visible { transition: none; opacity: 1; transform: none; }
-      .hero-kicker, .hero-body .h-hero, .hero-sub, .hero-btns { animation: none; }
-      .hero-scroll, .gallery-cell img, .svc-card, .btn { transition: none; animation: none; }
-      .green-rule, .green-rule.visible { transform: scaleX(1); transition: none; }
-      .gallery-cell, .gallery-cell.visible { opacity: 1; transform: scale(1); transition: none; }
-      .why-item, .why-item.visible { transform: translateX(0); }
-      .cta-band .btn-dark { animation: none; }
-      .nav-logo { animation: none; }
+      .reveal, .reveal.visible           { transition:none; opacity:1; transform:none; filter:none; }
+      .svc-card, .svc-card.visible       { transition:none; opacity:1; transform:none; }
+      .why-item, .why-item.visible       { transition:none; opacity:1; transform:none; }
+      .gallery-cell, .gallery-cell.visible { opacity:1; transform:none; transition:none; }
+      .green-rule, .green-rule.visible   { transform:scaleX(1); transition:none; }
+      .label, .label.visible             { opacity:1; transform:none; transition:none; }
+      .hero-line-inner                   { animation:none; opacity:1; transform:none; }
+      .hero-kicker,.hero-sub,.hero-btns  { animation:none; opacity:1; }
+      .mob-menu.open .mob-lnk            { animation:none; opacity:1; }
+      .cta-band .btn-dark                { animation:none; }
+      .nav-logo                          { animation:none; }
     }
   </style>
 </head>
@@ -779,7 +846,11 @@
   <div class="hero-overlay"></div>
   <div class="hero-body">
     <p class="hero-kicker">Heswall &bull; Wirral &bull; Building Specialists</p>
-    <h1 class="h-hero">BUILD<br><span style="color:var(--green)">BETTER.</span><br>BUILD BOLD.</h1>
+    <h1 class="h-hero">
+      <span class="hero-line"><span class="hero-line-inner">BUILD</span></span>
+      <span class="hero-line"><span class="hero-line-inner" style="color:var(--green)">BETTER.</span></span>
+      <span class="hero-line"><span class="hero-line-inner">BUILD BOLD.</span></span>
+    </h1>
     <p class="hero-sub">Construction and building specialists based in Heswall, Wirral. From groundwork to completion — we deliver quality you can see and craftsmanship that lasts.</p>
     <div class="hero-btns">
       <a href="#contact" class="btn btn-green">Get a Free Quote</a>
@@ -1161,11 +1232,11 @@
   const burger   = document.getElementById('burger');
   const mobMenu  = document.getElementById('mob-menu');
   const mobClose = document.getElementById('mob-close');
-  burger.addEventListener('click',   () => mobMenu.classList.add('open'));
-  mobClose.addEventListener('click', () => mobMenu.classList.remove('open'));
-  document.querySelectorAll('.mob-lnk').forEach(l =>
-    l.addEventListener('click', () => mobMenu.classList.remove('open'))
-  );
+  function openMenu()  { mobMenu.classList.add('open');    burger.classList.add('open');    document.body.style.overflow = 'hidden'; }
+  function closeMenu() { mobMenu.classList.remove('open'); burger.classList.remove('open'); document.body.style.overflow = ''; }
+  burger.addEventListener('click',   openMenu);
+  mobClose.addEventListener('click', closeMenu);
+  document.querySelectorAll('.mob-lnk').forEach(l => l.addEventListener('click', closeMenu));
 
   // ── Active nav highlight ──
   const sections = document.querySelectorAll('section[id]');
@@ -1177,14 +1248,13 @@
   }, { passive: true });
 
   // ── Scroll reveal via IntersectionObserver ──
-  // Also handles gallery cells and green-rules
-  const revealEls = document.querySelectorAll('.reveal, .gallery-cell, .green-rule');
+  const revealEls = document.querySelectorAll('.reveal, .gallery-cell, .green-rule, .svc-card, .why-item, .label');
   if ('IntersectionObserver' in window) {
     const ro = new IntersectionObserver(entries => {
       entries.forEach(e => {
         if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); }
       });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.08 });
     revealEls.forEach(el => ro.observe(el));
   } else {
     revealEls.forEach(el => el.classList.add('visible'));
@@ -1224,9 +1294,10 @@
     statEls.forEach(el => statObs.observe(el));
   }
 
-  // ── Hero background parallax on scroll ──
+  // ── Hero background parallax — desktop only (mobile is janky) ──
   const heroBg = document.querySelector('.hero-bg');
-  if (heroBg && !prefersReduced) {
+  const isMobile = window.matchMedia('(max-width: 768px)').matches;
+  if (heroBg && !prefersReduced && !isMobile) {
     let rafPending = false;
     window.addEventListener('scroll', () => {
       if (rafPending) return;
