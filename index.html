@@ -1232,11 +1232,27 @@
   const burger   = document.getElementById('burger');
   const mobMenu  = document.getElementById('mob-menu');
   const mobClose = document.getElementById('mob-close');
-  function openMenu()  { mobMenu.classList.add('open');    burger.classList.add('open');    document.body.style.overflow = 'hidden'; }
-  function closeMenu() { mobMenu.classList.remove('open'); burger.classList.remove('open'); document.body.style.overflow = ''; }
-  burger.addEventListener('click',   openMenu);
+  function openMenu() {
+    mobMenu.classList.add('open');
+    burger.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    history.pushState({ menuOpen: true }, '');
+  }
+  function closeMenu() {
+    mobMenu.classList.remove('open');
+    burger.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  burger.addEventListener('click', () => {
+    if (mobMenu.classList.contains('open')) closeMenu();
+    else openMenu();
+  });
   mobClose.addEventListener('click', closeMenu);
   document.querySelectorAll('.mob-lnk').forEach(l => l.addEventListener('click', closeMenu));
+  // Back button closes menu instead of navigating away
+  window.addEventListener('popstate', () => {
+    if (mobMenu.classList.contains('open')) closeMenu();
+  });
 
   // ── Active nav highlight ──
   const sections = document.querySelectorAll('section[id]');
