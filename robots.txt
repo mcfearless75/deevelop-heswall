@@ -1,7 +1,7 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.deevelop-heswall.co.uk/sitemap.xml
+Sitemap: https://www.deevelopwirral.co.uk/sitemap.xml
 
 # AI training crawlers - blocked
 User-agent: GPTBot
