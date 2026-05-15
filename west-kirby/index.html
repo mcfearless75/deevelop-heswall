@@ -3,23 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
   <title>Builder West Kirby | deevelop Heswall Ltd | Extensions &amp; Renovations Wirral</title>
   <meta name="description" content="deevelop Heswall Ltd — local builders serving West Kirby, Wirral. Extensions, new builds, renovations, groundwork and loft conversions. Trusted tradespeople on your doorstep. Free quote.">
-  <meta name="keywords" content="builder West Kirby, construction West Kirby, extension West Kirby, renovation West Kirby, loft conversion West Kirby, building company West Kirby Wirral, groundwork West Kirby, brickwork West Kirby">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://www.deevelop-heswall.co.uk/west-kirby/">
 
   <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
   <meta name="theme-color" content="#0f0f0f">
 
   <meta property="og:type" content="website">
   <meta property="og:title" content="Builder West Kirby | deevelop Heswall Ltd">
   <meta property="og:description" content="Local builders in West Kirby, Wirral. Extensions, renovations, new builds and more. Get a free quote from deevelop Heswall Ltd.">
   <meta property="og:url" content="https://www.deevelop-heswall.co.uk/west-kirby/">
-  <meta property="og:image" content="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&h=630&fit=crop&q=85">
+  <meta property="og:image" content="https://www.deevelop-heswall.co.uk/instagram-images/insta-02.jpg">
   <meta property="og:locale" content="en_GB">
+  <meta property="og:site_name" content="deevelop Heswall Ltd">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://www.deevelop-heswall.co.uk/instagram-images/insta-02.jpg">
 
   <meta name="geo.region" content="GB-WIR">
   <meta name="geo.placename" content="West Kirby, Wirral">
@@ -35,16 +37,57 @@
     "@context": "https://schema.org",
     "@graph": [
       {
+        "@type": "WebSite",
+        "@id": "https://www.deevelop-heswall.co.uk/#website",
+        "url": "https://www.deevelop-heswall.co.uk/",
+        "name": "deevelop Heswall Ltd",
+        "inLanguage": "en-GB"
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://www.deevelop-heswall.co.uk/west-kirby/#webpage",
+        "url": "https://www.deevelop-heswall.co.uk/west-kirby/",
+        "name": "Builder West Kirby | deevelop Heswall Ltd | Wirral Construction",
+        "description": "Local building and construction services in West Kirby, Wirral. Extensions, renovations, new builds. Free quotes.",
+        "isPartOf": { "@id": "https://www.deevelop-heswall.co.uk/#website" },
+        "about": { "@id": "https://www.deevelop-heswall.co.uk/#business" },
+        "inLanguage": "en-GB",
+        "breadcrumb": { "@id": "https://www.deevelop-heswall.co.uk/west-kirby/#breadcrumb" }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://www.deevelop-heswall.co.uk/west-kirby/#breadcrumb",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.deevelop-heswall.co.uk/" },
+          { "@type": "ListItem", "position": 2, "name": "West Kirby", "item": "https://www.deevelop-heswall.co.uk/west-kirby/" }
+        ]
+      },
+      {
         "@type": ["HomeAndConstructionBusiness", "LocalBusiness"],
         "@id": "https://www.deevelop-heswall.co.uk/#business",
         "name": "deevelop Heswall Ltd",
         "url": "https://www.deevelop-heswall.co.uk",
+        "telephone": "+447905795573",
+        "email": "deevelopheswallltd@gmail.com",
         "description": "Building and construction specialists serving West Kirby and the surrounding Wirral villages.",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.deevelop-heswall.co.uk/instagram-images/insta-02.jpg",
+          "width": 1080,
+          "height": 1080
+        },
+        "image": "https://www.deevelop-heswall.co.uk/instagram-images/insta-02.jpg",
         "address": {
           "@type": "PostalAddress",
           "addressLocality": "Heswall",
           "addressRegion": "Wirral",
+          "postalCode": "CH60",
           "addressCountry": "GB"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": "53.37280",
+          "longitude": "-3.18690"
         },
         "areaServed": [
           { "@type": "City", "name": "West Kirby" },
@@ -52,21 +95,18 @@
           { "@type": "City", "name": "Caldy" },
           { "@type": "City", "name": "Thurstaston" }
         ],
-        "sameAs": ["https://www.instagram.com/deevelop_heswallltd/"]
-      },
-      {
-        "@type": "WebPage",
-        "@id": "https://www.deevelop-heswall.co.uk/west-kirby/",
-        "url": "https://www.deevelop-heswall.co.uk/west-kirby/",
-        "name": "Builder West Kirby | deevelop Heswall Ltd",
-        "description": "Local building and construction services in West Kirby, Wirral.",
-        "breadcrumb": {
-          "@type": "BreadcrumbList",
-          "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.deevelop-heswall.co.uk/" },
-            { "@type": "ListItem", "position": 2, "name": "West Kirby", "item": "https://www.deevelop-heswall.co.uk/west-kirby/" }
-          ]
-        }
+        "priceRange": "££",
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+            "opens": "07:30",
+            "closes": "17:30"
+          }
+        ],
+        "sameAs": [
+          "https://www.instagram.com/deevelop_heswallltd/"
+        ]
       }
     ]
   }

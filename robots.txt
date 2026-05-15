@@ -1,0 +1,20 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.deevelop-heswall.co.uk/sitemap.xml
+
+# AI training crawlers - blocked
+User-agent: GPTBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
